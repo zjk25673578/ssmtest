@@ -11,7 +11,7 @@
 <a href="${ctx}/appuser/showUsers">返回用户列表</a>
 <table border="1" cellspacing="0" cellpadding="0">
     <tr>
-        <td>編號</td>
+        <td>编号</td>
         <td>假勤状态代码</td>
         <td>假勤状态名称</td>
         <td>操作</td>

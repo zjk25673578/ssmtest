@@ -8,7 +8,19 @@
 <body>
 <h2>模块导航</h2>
 <div class="myrow">
-    <a href="${ctx}/appuser/showUsers">用戶列表</a>
+    <a href="${ctx}/appuser/showUsers">用户列表</a>
+</div>
+<div class="myrow">
+    <a href="javascript:;">poi导出word</a>
+</div>
+<div class="myrow">
+    <a href="javascript:;">poi导出excel</a>
+</div>
+<div class="myrow">
+    <a href="javascript:;">freemarker导出word</a>
+</div>
+<div class="myrow">
+    <a href="javascript:;">freemarker导出excel</a>
 </div>
 </body>
 </html>
