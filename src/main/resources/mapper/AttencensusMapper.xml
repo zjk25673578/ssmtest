@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hanqi.dao.AttencensusMapper" >
+  <resultMap id="BaseResultMap" type="com.hanqi.model.Attencensus" >
+    <id column="ids" property="ids" jdbcType="INTEGER" />
+    <result column="userid" property="userid" jdbcType="INTEGER" />
+    <result column="year" property="year" jdbcType="INTEGER" />
+    <result column="month" property="month" jdbcType="INTEGER" />
+    <result column="atten" property="atten" jdbcType="INTEGER" />
+    <result column="attentotal" property="attentotal" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="TINYINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ids, userid, year, month, atten, attentotal, status
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from attencensus
+    where ids = #{ids,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from attencensus
+    where ids = #{ids,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.hanqi.model.Attencensus" useGeneratedKeys="true" keyProperty="ids" >
+    insert into attencensus (userid, year, month, 
+      atten, attentotal, status
+      )
+    values (#{userid,jdbcType=INTEGER}, #{year,jdbcType=INTEGER}, #{month,jdbcType=INTEGER}, 
+      #{atten,jdbcType=INTEGER}, #{attentotal,jdbcType=INTEGER}, #{status,jdbcType=TINYINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.hanqi.model.Attencensus" useGeneratedKeys="true" keyProperty="ids" >
+    insert into attencensus
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userid != null" >
+        userid,
+      </if>
+      <if test="year != null" >
+        year,
+      </if>
+      <if test="month != null" >
+        month,
+      </if>
+      <if test="atten != null" >
+        atten,
+      </if>
+      <if test="attentotal != null" >
+        attentotal,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userid != null" >
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="year != null" >
+        #{year,jdbcType=INTEGER},
+      </if>
+      <if test="month != null" >
+        #{month,jdbcType=INTEGER},
+      </if>
+      <if test="atten != null" >
+        #{atten,jdbcType=INTEGER},
+      </if>
+      <if test="attentotal != null" >
+        #{attentotal,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hanqi.model.Attencensus" >
+    update attencensus
+    <set >
+      <if test="userid != null" >
+        userid = #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="year != null" >
+        year = #{year,jdbcType=INTEGER},
+      </if>
+      <if test="month != null" >
+        month = #{month,jdbcType=INTEGER},
+      </if>
+      <if test="atten != null" >
+        atten = #{atten,jdbcType=INTEGER},
+      </if>
+      <if test="attentotal != null" >
+        attentotal = #{attentotal,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=TINYINT},
+      </if>
+    </set>
+    where ids = #{ids,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hanqi.model.Attencensus" >
+    update attencensus
+    set userid = #{userid,jdbcType=INTEGER},
+      year = #{year,jdbcType=INTEGER},
+      month = #{month,jdbcType=INTEGER},
+      atten = #{atten,jdbcType=INTEGER},
+      attentotal = #{attentotal,jdbcType=INTEGER},
+      status = #{status,jdbcType=TINYINT}
+    where ids = #{ids,jdbcType=INTEGER}
+  </update>
+</mapper>

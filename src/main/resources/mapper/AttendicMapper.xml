@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hanqi.dao.AttendicMapper">
+    <resultMap id="BaseResultMap" type="com.hanqi.model.Attendic">
+        <id column="ids" property="ids" jdbcType="INTEGER"/>
+        <result column="attencode" property="attencode" jdbcType="VARCHAR"/>
+        <result column="attenname" property="attenname" jdbcType="VARCHAR"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    ids, attencode, attenname
+  </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from attendic
+        where ids = #{ids,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from attendic
+    where ids = #{ids,jdbcType=INTEGER}
+  </delete>
+    <insert id="insert" parameterType="com.hanqi.model.Attendic" useGeneratedKeys="true" keyProperty="ids">
+    insert into attendic (attencode, attenname)
+    values (#{attencode,jdbcType=VARCHAR}, #{attenname,jdbcType=VARCHAR})
+  </insert>
+    <insert id="insertSelective" parameterType="com.hanqi.model.Attendic" useGeneratedKeys="true" keyProperty="ids">
+        insert into attendic
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="attencode != null">
+                attencode,
+            </if>
+            <if test="attenname != null">
+                attenname,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="attencode != null">
+                #{attencode,jdbcType=VARCHAR},
+            </if>
+            <if test="attenname != null">
+                #{attenname,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.hanqi.model.Attendic">
+        update attendic
+        <set>
+            <if test="attencode != null">
+                attencode = #{attencode,jdbcType=VARCHAR},
+            </if>
+            <if test="attenname != null">
+                attenname = #{attenname,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where ids = #{ids,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.hanqi.model.Attendic">
+    update attendic
+    set attencode = #{attencode,jdbcType=VARCHAR},
+      attenname = #{attenname,jdbcType=VARCHAR}
+    where ids = #{ids,jdbcType=INTEGER}
+  </update>
+
+    <select id="getList" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from attendic
+    </select>
+
+    <update id="updateDicStatus">
+        update attendic set status=#{param2} where ids=#{param1}
+    </update>
+</mapper>

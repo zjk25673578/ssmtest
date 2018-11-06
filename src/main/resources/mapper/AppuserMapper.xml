@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hanqi.dao.AppuserMapper">
+    <resultMap id="BaseResultMap" type="com.hanqi.model.Appuser">
+        <id column="ids" property="ids" jdbcType="INTEGER"/>
+        <result column="username" property="username" jdbcType="VARCHAR"/>
+        <result column="realname" property="realname" jdbcType="VARCHAR"/>
+        <result column="createTime" property="createTime" jdbcType="DATE"/>
+        <result column="status" property="status" jdbcType="TINYINT"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    ids, username, realname, createTime, status
+  </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from appuser
+        where ids = #{ids,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from appuser
+    where ids = #{ids,jdbcType=INTEGER}
+  </delete>
+    <insert id="insert" parameterType="com.hanqi.model.Appuser" useGeneratedKeys="true" keyProperty="ids">
+    insert into appuser (username, realname, createTime,
+      status)
+    values (#{username,jdbcType=VARCHAR}, #{realname,jdbcType=VARCHAR}, #{createTime,jdbcType=DATE},
+      #{status,jdbcType=TINYINT})
+  </insert>
+    <insert id="insertSelective" parameterType="com.hanqi.model.Appuser" useGeneratedKeys="true" keyProperty="ids">
+        insert into appuser
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="username != null">
+                username,
+            </if>
+            <if test="realname != null">
+                realname,
+            </if>
+            <if test="createTime != null">
+                createTime,
+            </if>
+            status,
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="username != null">
+                #{username,jdbcType=VARCHAR},
+            </if>
+            <if test="realname != null">
+                #{realname,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=DATE},
+            </if>
+            1,
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.hanqi.model.Appuser">
+        update appuser
+        <set>
+            <if test="username != null">
+                username = #{username,jdbcType=VARCHAR},
+            </if>
+            <if test="realname != null">
+                realname = #{realname,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                createTime = #{createTime,jdbcType=DATE},
+            </if>
+            <if test="status != null">
+                status = #{status,jdbcType=TINYINT},
+            </if>
+        </set>
+        where ids = #{ids,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.hanqi.model.Appuser">
+    update appuser
+    set username = #{username,jdbcType=VARCHAR},
+      realname = #{realname,jdbcType=VARCHAR},
+      createTime = #{createTime,jdbcType=DATE},
+      status = #{status,jdbcType=TINYINT}
+    where ids = #{ids,jdbcType=INTEGER}
+  </update>
+    <select id="selectUsers" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from appuser
+    </select>
+
+    <update id="updateUserStatus">
+        update appuser set status=#{param2} where ids=#{param1}
+    </update>
+</mapper>

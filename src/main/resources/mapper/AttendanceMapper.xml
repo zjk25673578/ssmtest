@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hanqi.dao.AttendanceMapper">
+    <resultMap id="BaseResultMap" type="com.hanqi.model.Attendance">
+        <id column="ids" property="ids" jdbcType="INTEGER"/>
+        <result column="userid" property="userid" jdbcType="INTEGER"/>
+        <result column="year" property="year" jdbcType="INTEGER"/>
+        <result column="month" property="month" jdbcType="INTEGER"/>
+        <result column="day" property="day" jdbcType="INTEGER"/>
+        <result column="atten" property="atten" jdbcType="INTEGER"/>
+        <result column="status" property="status" jdbcType="TINYINT"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    ids, userid, year, month, day, atten, status
+  </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from attendance
+        where ids = #{ids,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from attendance
+    where ids = #{ids,jdbcType=INTEGER}
+  </delete>
+    <insert id="insert" parameterType="com.hanqi.model.Attendance" useGeneratedKeys="true" keyProperty="ids">
+    insert into attendance (userid, year, month, 
+      day, atten, status)
+    values (#{userid,jdbcType=INTEGER}, #{year,jdbcType=INTEGER}, #{month,jdbcType=INTEGER}, 
+      #{day,jdbcType=INTEGER}, #{atten,jdbcType=INTEGER}, #{status,jdbcType=TINYINT})
+  </insert>
+    <insert id="insertSelective" parameterType="com.hanqi.model.Attendance" useGeneratedKeys="true" keyProperty="ids">
+        insert into attendance
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="userid != null">
+                userid,
+            </if>
+            <if test="year != null">
+                year,
+            </if>
+            <if test="month != null">
+                month,
+            </if>
+            <if test="day != null">
+                day,
+            </if>
+            <if test="atten != null">
+                atten,
+            </if>
+            <if test="status != null">
+                status,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="userid != null">
+                #{userid,jdbcType=INTEGER},
+            </if>
+            <if test="year != null">
+                #{year,jdbcType=INTEGER},
+            </if>
+            <if test="month != null">
+                #{month,jdbcType=INTEGER},
+            </if>
+            <if test="day != null">
+                #{day,jdbcType=INTEGER},
+            </if>
+            <if test="atten != null">
+                #{atten,jdbcType=INTEGER},
+            </if>
+            <if test="status != null">
+                #{status,jdbcType=TINYINT},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.hanqi.model.Attendance">
+        update attendance
+        <set>
+            <if test="userid != null">
+                userid = #{userid,jdbcType=INTEGER},
+            </if>
+            <if test="year != null">
+                year = #{year,jdbcType=INTEGER},
+            </if>
+            <if test="month != null">
+                month = #{month,jdbcType=INTEGER},
+            </if>
+            <if test="day != null">
+                day = #{day,jdbcType=INTEGER},
+            </if>
+            <if test="atten != null">
+                atten = #{atten,jdbcType=INTEGER},
+            </if>
+            <if test="status != null">
+                status = #{status,jdbcType=TINYINT},
+            </if>
+        </set>
+        where ids = #{ids,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.hanqi.model.Attendance">
+    update attendance
+    set userid = #{userid,jdbcType=INTEGER},
+      year = #{year,jdbcType=INTEGER},
+      month = #{month,jdbcType=INTEGER},
+      day = #{day,jdbcType=INTEGER},
+      atten = #{atten,jdbcType=INTEGER},
+      status = #{status,jdbcType=TINYINT}
+    where ids = #{ids,jdbcType=INTEGER}
+  </update>
+    <select id="selectUserAttenInfo" resultType="Map">
+    select u.ids as userid,username,realname,createtime,year,month,day,
+    (select attenname from attendic c where c.ids=d.atten) attenname from appuser u
+    left join attendance d on u.ids=d.userid where u.ids=#{ids}
+  </select>
+
+    <insert id="insertAttenInfo" parameterType="Map">
+        insert into attendance
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="ids != null">
+                userid,
+            </if>
+            <if test="year != null">
+                year,
+            </if>
+            <if test="month != null">
+                month,
+            </if>
+            <if test="day != null">
+                day,
+            </if>
+            <if test="atten != null">
+                atten,
+            </if>
+            status
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="ids != null">
+                #{ids,jdbcType=INTEGER},
+            </if>
+            <if test="year != null">
+                #{year,jdbcType=INTEGER},
+            </if>
+            <if test="month != null">
+                #{month,jdbcType=INTEGER},
+            </if>
+            <if test="day != null">
+                #{day,jdbcType=INTEGER},
+            </if>
+            <if test="atten != null">
+                #{atten,jdbcType=INTEGER},
+            </if>
+            1,
+        </trim>
+    </insert>
+</mapper>

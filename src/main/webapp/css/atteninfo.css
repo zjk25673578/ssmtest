@@ -1,0 +1,36 @@
+.atten-title + table tr td{
+}
+.atten-title + table tr:not(first-child) td {
+    font-size: 8px;
+    text-align: left;
+    line-height: 40px;
+    width: 130px;
+    height: 100px;
+}
+
+.atten_menu {
+    display: none;
+    width: 80px;
+    float: left;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+}
+
+.atten_menu ul li {
+    list-style: none;
+    padding: 3px 0px;
+    border: 1px #000 solid;
+    color: #000;
+    background: #fff;
+    cursor: pointer;
+    text-align: center;
+    height: 10px;
+    font-size: 8px;
+    line-height: 10px;
+}
+
+.atten_menu ul li:hover {
+    color: #fff;
+    background: #000;
+}
