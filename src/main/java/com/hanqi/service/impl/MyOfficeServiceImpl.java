@@ -1,22 +1,21 @@
-package com.hanqi.test;
+package com.hanqi.service.impl;
 
+import com.hanqi.service.MyOfficeService;
 import org.apache.poi.xwpf.model.XWPFHeaderFooterPolicy;
 import org.apache.poi.xwpf.usermodel.*;
 import org.openxmlformats.schemas.wordprocessingml.x2006.main.*;
+import org.springframework.stereotype.Repository;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.math.BigInteger;
-import java.util.Arrays;
 
-public class TestDemo {
-    public static void main(String[] args) throws Exception {
-/*        System.out.println(MyDate.getCurrMonth());
-        System.out.println(MyDate.getCurrYear());
-        System.out.println(MyDate.getCurrDate());
-        System.out.println(MyDate.getDateStr());*/
+@Repository
+public class MyOfficeServiceImpl implements MyOfficeService {
 
+    @Override
+    public byte[] makeWord() throws Exception {
         XWPFDocument document = new XWPFDocument();
 
         //Write the Document in file system
@@ -161,27 +160,6 @@ public class TestDemo {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         document.write(baos);
 
-        System.out.println("OK !");
-
-        byte[] result = baos.toByteArray();
-        System.out.println(Arrays.toString(result));
-
-/*
-        File file = new File("E:\\aaaa\\1.txt");
-        try {
-            InputStream in = new FileInputStream(file);
-            byte[] buffer = new byte[1024];
-            ByteArrayOutputStream baos = new ByteArrayOutputStream();
-            int r;
-            while ((r = in.read(buffer)) != -1) {
-                baos.write(buffer);
-                System.out.println(r);
-            }
-            byte[] result = baos.toByteArray();
-            System.out.println(Arrays.toString(result));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }*/
-
+        return baos.toByteArray();
     }
 }

@@ -13,7 +13,7 @@
 </div>
 <table border="1" cellspacing="0" cellpadding="0">
     <tr>
-        <td>編號</td>
+        <td>编号</td>
         <td>用户名</td>
         <td>姓名</td>
         <td>创建日期</td>
