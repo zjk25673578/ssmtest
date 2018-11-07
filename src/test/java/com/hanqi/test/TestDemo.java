@@ -1,14 +1,9 @@
 package com.hanqi.test;
 
-import org.apache.poi.xwpf.model.XWPFHeaderFooterPolicy;
 import org.apache.poi.xwpf.usermodel.*;
-import org.openxmlformats.schemas.wordprocessingml.x2006.main.*;
 
-import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
-import java.math.BigInteger;
-import java.util.Arrays;
 
 public class TestDemo {
     public static void main(String[] args) throws Exception {
@@ -20,7 +15,7 @@ public class TestDemo {
         XWPFDocument document = new XWPFDocument();
 
         //Write the Document in file system
-        FileOutputStream out = new FileOutputStream(new File("create_table.docx"));
+        FileOutputStream out = new FileOutputStream(new File("e:/aaaa/create_table.docx"));
 
         //添加标题
         XWPFParagraph titleParagraph = document.createParagraph();
@@ -28,7 +23,7 @@ public class TestDemo {
         titleParagraph.setAlignment(ParagraphAlignment.CENTER);
 
         XWPFRun titleParagraphRun = titleParagraph.createRun();
-        titleParagraphRun.setText("Java PoI");
+        titleParagraphRun.setText("我的事项");
         titleParagraphRun.setColor("000000");
         titleParagraphRun.setFontSize(20);
 
@@ -36,14 +31,14 @@ public class TestDemo {
         //段落
         XWPFParagraph firstParagraph = document.createParagraph();
         XWPFRun run = firstParagraph.createRun();
-        run.setText("Java POI 生成word文件。");
-        run.setColor("696969");
-        run.setFontSize(16);
+        run.setText("\r");
+//        run.setColor("696969");
+//        run.setFontSize(16);
 
         //设置段落背景颜色
-        CTShd cTShd = run.getCTR().addNewRPr().addNewShd();
-        cTShd.setVal(STShd.CLEAR);
-        cTShd.setFill("97FFFF");
+//        CTShd cTShd = run.getCTR().addNewRPr().addNewShd();
+//        cTShd.setVal(STShd.CLEAR);
+//        cTShd.setFill("97FFFF");
 
 
         //换行
@@ -55,82 +50,55 @@ public class TestDemo {
         //基本信息表格
         XWPFTable infoTable = document.createTable();
         //去表格边框
-        infoTable.getCTTbl().getTblPr().unsetTblBorders();
+        // infoTable.getCTTbl().getTblPr().unsetTblBorders();
 
+        XWPFTableRow row1 = infoTable.getRow(0);
+        row1.setHeight(80);
+        XWPFTableCell row1cell1 = row1.createCell();
+        row1cell1.setText("事项主题：");
+        XWPFTableCell row1cell2 = row1.createCell();
+        row1cell2.setText("内容内容内容");
+        XWPFTableCell row1cell3 = row1.createCell();
+        row1cell3.setText("事项类型：");
+        XWPFTableCell row1cell4 = row1.createCell();
+        row1cell4.setText("内容内容内容");
 
         //列宽自动分割
-        CTTblWidth infoTableWidth = infoTable.getCTTbl().addNewTblPr().addNewTblW();
-        infoTableWidth.setType(STTblWidth.DXA);
-        infoTableWidth.setW(BigInteger.valueOf(9072));
+//        CTTblWidth infoTableWidth = infoTable.getCTTbl().addNewTblPr().addNewTblW();
+//        infoTableWidth.setType(STTblWidth.DXA);
+//        infoTableWidth.setW(BigInteger.valueOf(9072));
 
-
-        //表格第一行
+/*        //表格第一行
         XWPFTableRow infoTableRowOne = infoTable.getRow(0);
-        infoTableRowOne.getCell(0).setText("职位");
-        infoTableRowOne.addNewTableCell().setText(": Java 开发工程师");
+        infoTableRowOne.getCell(0).setText("事项主题：");
+        infoTableRowOne.addNewTableCell().setText("内容内容内容");
+        infoTableRowOne.addNewTableCell().setText("事项类型：");
+        infoTableRowOne.addNewTableCell().setText("内容内容内容");
 
         //表格第二行
         XWPFTableRow infoTableRowTwo = infoTable.createRow();
-        infoTableRowTwo.getCell(0).setText("姓名");
-        infoTableRowTwo.getCell(1).setText(": seawater");
+        infoTableRowTwo.getCell(0).setText("执行人：");
+        infoTableRowTwo.getCell(1).setText("内容内容内容内容内容内内容内容内容内容");
 
         //表格第三行
         XWPFTableRow infoTableRowThree = infoTable.createRow();
-        infoTableRowThree.getCell(0).setText("生日");
-        infoTableRowThree.getCell(1).setText(": xxx-xx-xx");
+        infoTableRowThree.getCell(0).setText("事项内容：");
+        infoTableRowThree.getCell(1).setText("内容内容内容内容内内容内容内容内容内容内容内容内容内");
 
         //表格第四行
         XWPFTableRow infoTableRowFour = infoTable.createRow();
-        infoTableRowFour.getCell(0).setText("性别");
-        infoTableRowFour.getCell(1).setText(": 男");
+        infoTableRowFour.getCell(0).setText("备注：");
+        infoTableRowFour.getCell(1).setText("是的各色个黑色核辐射人家双方当事人挺好");
 
         //表格第五行
         XWPFTableRow infoTableRowFive = infoTable.createRow();
-        infoTableRowFive.getCell(0).setText("现居地");
-        infoTableRowFive.getCell(1).setText(": xx");
+        infoTableRowFive.getCell(0).setText("附件：");
+        infoTableRowFive.getCell(1).setText("呵呵呵");*/
 
+/*        CTSectPr sectPr = document.getDocument().getBody().addNewSectPr();
+        XWPFHeaderFooterPolicy policy = new XWPFHeaderFooterPolicy(document, sectPr);*/
 
-        //两个表格之间加个换行
-        XWPFParagraph paragraph = document.createParagraph();
-        XWPFRun paragraphRun = paragraph.createRun();
-        paragraphRun.setText("\r");
-
-
-        //工作经历表格
-        XWPFTable ComTable = document.createTable();
-
-
-        //列宽自动分割
-        CTTblWidth comTableWidth = ComTable.getCTTbl().addNewTblPr().addNewTblW();
-        comTableWidth.setType(STTblWidth.DXA);
-        comTableWidth.setW(BigInteger.valueOf(9072));
-
-        //表格第一行
-        XWPFTableRow comTableRowOne = ComTable.getRow(0);
-        comTableRowOne.getCell(0).setText("开始时间");
-        comTableRowOne.addNewTableCell().setText("结束时间");
-        comTableRowOne.addNewTableCell().setText("公司名称");
-        comTableRowOne.addNewTableCell().setText("title");
-
-        //表格第二行
-        XWPFTableRow comTableRowTwo = ComTable.createRow();
-        comTableRowTwo.getCell(0).setText("2016-09-06");
-        comTableRowTwo.getCell(1).setText("至今");
-        comTableRowTwo.getCell(2).setText("seawater");
-        comTableRowTwo.getCell(3).setText("Java开发工程师");
-
-        //表格第三行
-        XWPFTableRow comTableRowThree = ComTable.createRow();
-        comTableRowThree.getCell(0).setText("2016-09-06");
-        comTableRowThree.getCell(1).setText("至今");
-        comTableRowThree.getCell(2).setText("seawater");
-        comTableRowThree.getCell(3).setText("Java开发工程师");
-
-
-        CTSectPr sectPr = document.getDocument().getBody().addNewSectPr();
-        XWPFHeaderFooterPolicy policy = new XWPFHeaderFooterPolicy(document, sectPr);
-
-        //添加页眉
+/*        //添加页眉
         CTP ctpHeader = CTP.Factory.newInstance();
         CTR ctrHeader = ctpHeader.addNewR();
         CTText ctHeader = ctrHeader.addNewT();
@@ -154,17 +122,17 @@ public class TestDemo {
         headerParagraph.setAlignment(ParagraphAlignment.CENTER);
         XWPFParagraph[] parsFooter = new XWPFParagraph[1];
         parsFooter[0] = footerParagraph;
-        policy.createFooter(XWPFHeaderFooterPolicy.DEFAULT, parsFooter);
+        policy.createFooter(XWPFHeaderFooterPolicy.DEFAULT, parsFooter);*/
 
-        // document.write(out);
-        // out.close();
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        document.write(baos);
-
+        document.write(out);
+        out.close();
         System.out.println("OK !");
 
+/*        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        document.write(baos);
+
         byte[] result = baos.toByteArray();
-        System.out.println(Arrays.toString(result));
+        System.out.println(Arrays.toString(result));*/
 
 /*
         File file = new File("E:\\aaaa\\1.txt");
