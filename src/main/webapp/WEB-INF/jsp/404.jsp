@@ -7,5 +7,8 @@
 <body>
 <h1>404页面</h1>
 您访问的页面不存在 !
+<p>
+    <img src="${ctx}/images/1.jpg" alt="">
+</p>
 </body>
 </html>

@@ -6,20 +6,26 @@ import java.io.FileReader;
 import java.io.Reader;
 
 public class TestDemo {
-    public static void main(String[] args) throws Exception {
+    public static String readHtml(String path) throws Exception {
 /*        System.out.println(MyDate.getCurrMonth());
         System.out.println(MyDate.getCurrYear());
         System.out.println(MyDate.getCurrDate());
         System.out.println(MyDate.getDateStr());*/
+        StringBuilder content = new StringBuilder();
+        File file = new File(path);
+        if (file.exists()) {
+            Reader reader = new FileReader(file);
+            BufferedReader br = new BufferedReader(reader);
 
-        File file = new File("E:\\mytest\\1\\a.html");
-
-        Reader reader = new FileReader(file);
-        BufferedReader br = new BufferedReader(reader);
-
-        String line = br.readLine();
-        System.out.println(line);
-
-        br.close();
+            String line = br.readLine();
+            while ((line = br.readLine()) != null) {
+                System.out.println(line);
+                content.append(line);
+            }
+            br.close();
+        } else {
+            System.out.println("FILE NOT FOUND !");
+        }
+        return content.toString();
     }
 }

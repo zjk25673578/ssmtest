@@ -9,15 +9,24 @@ import java.io.File;
 import java.io.FileOutputStream;
 
 public class TestWord2 {
+    public static void main1111(String[] args) {
+        try {
+            System.out.println(TestDemo.readHtml("E:\\IdeaProjects\\ssmtest\\src\\main\\webapp\\WEB-INF\\jsp\\404.jsp"));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
     public static void main(String[] args) {
         String title = "测试标题";
         String text = "aaaaa测试内容测试内容测试内容测试内容测试内容";
         try {
             //word内容
-            String content="<html><body>" +
+/*            String content="<html><body>" +
                     "<p style=\"text-align: center;\"><span style=\"font-family: 黑体, SimHei; font-size: 14px;\">"
-                    + title + "</span></p>" + text + "</body></html>";
-            byte b[] = content.getBytes("GBK");  //这里是必须要设置编码的，不然导出中文就会乱码。
+                    + title + "</span></p>" + text + "</body></html>";*/
+            String content = TestDemo.readHtml("E:\\IdeaProjects\\ssmtest\\src\\main\\webapp\\WEB-INF\\jsp\\404.jsp");
+
+            byte b[] = content.getBytes("UTF-8");  //这里是必须要设置编码的，不然导出中文就会乱码。
             ByteArrayInputStream bais = new ByteArrayInputStream(b);//将字节数组包装到流中
 
             /*
