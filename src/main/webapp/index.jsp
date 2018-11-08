@@ -22,5 +22,8 @@
 <div class="myrow">
     <a href="javascript:;">freemarker导出excel</a>
 </div>
+<div class="myrow">
+    <a href="${ctx}/charts/topage">echarts图表测试</a>
+</div>
 </body>
 </html>
