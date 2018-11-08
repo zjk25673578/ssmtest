@@ -1,13 +1,59 @@
 package com.hanqi.test;
 
-import java.io.File;
+import freemarker.template.Configuration;
+import freemarker.template.Template;
+import sun.misc.BASE64Encoder;
+
+import java.io.*;
+import java.util.HashMap;
+import java.util.Map;
 
 public class TestWord {
 
+
     public static void main(String[] args) {
-        File word = new File("e:\\aaaa\\my_message.doc");
-        System.out.println(word.exists());
+        Configuration configuration = new Configuration(Configuration.VERSION_2_3_22);
+        try {
+            configuration.setDefaultEncoding("utf-8");
+            configuration.setDirectoryForTemplateLoading(new File("E:\\IdeaProjects\\ssmtest\\src\\main\\resources\\templet"));
+            Template template = configuration.getTemplate("word2003.xml");
+            Map<String, Object> map = new HashMap<>();
+            map.put("otitle", "aaaaaaaaa");
+            map.put("otype", "ccccc");
+            map.put("sendtoName", "bbbbbbb");
+            map.put("content", getImageBase());
+            map.put("note", "eeeeeeeeeeeee");
+            map.put("fileName", "fffffffff");
+            Writer writer = new FileWriter("e:\\result.docx");
 
+            template.process(map, writer);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        System.out.println("完成 !");
+    }
 
+    //获得图片的base64码
+    public static String getImageBase() {
+        File file = new File("E:\\IdeaProjects\\ssmtest\\src\\main\\webapp\\images\\1.jpg");
+        if (!file.exists()) {
+            return "";
+        }
+        InputStream in = null;
+        byte[] data = null;
+        try {
+            in = new FileInputStream(file);
+        } catch (FileNotFoundException e1) {
+            e1.printStackTrace();
+        }
+        try {
+            data = new byte[in.available()];
+            in.read(data);
+            in.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        BASE64Encoder encoder = new BASE64Encoder();
+        return encoder.encode(data);
     }
 }
