@@ -9,7 +9,7 @@
 <div class="myrow">
     <a href="${ctx}/appuser/userinfo?action=add">添加用戶</a>
     <a href="${ctx}/attendic/showDics">字典管理</a>
-    <a href="${ctx}">返回导航</a>
+    <a href="${ctx}/index.jsp">返回导航</a>
 </div>
 <table border="1" cellspacing="0" cellpadding="0">
     <tr>
