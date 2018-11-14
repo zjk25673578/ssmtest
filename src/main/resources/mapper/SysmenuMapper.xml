@@ -9,11 +9,11 @@
         <result column="PARENTID" jdbcType="DECIMAL" property="parentid"/>
     </resultMap>
     <sql id="Base_Column_List">
-        IDS, LABEL, URL, PARENTID
+        IDS, LABEL, ICON, URL, PARENTID
     </sql>
     <select id="trees" resultMap="BaseResultMap">
         select
-        <include refid="Base_Column_List"/>
+        IDS, LABEL, URL, PARENTID
         from sysmenu
     </select>
 </mapper>

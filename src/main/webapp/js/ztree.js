@@ -1,25 +1,39 @@
 layui.use(["layer", "jquery"], function () {
 
-    var layer = layui.layer;
+    let layer = layui.layer;
 
     $("#select").on("click", function () {
-        loadZtree();
+        loadZtree($("#ids").val());
         layer.open({
             type: 1,
             area: "200px",
             offset: '200px',
             content: $("#menuContent"),
-            btn: ["确定","取消"],
-            yes: function() {
-
+            btn: ["确定", "取消"],
+            yes: function (index, layero) {
+                let ids = [];
+                let mnames = [];
+                let ztree = $.fn.zTree.getZTreeObj("ztree-demo");
+                let nodelist = ztree.getCheckedNodes(true);
+                for (let i = 0; i < nodelist.length; i++) {
+                    if (!nodelist[i].isParent) {
+                        ids.push(nodelist[i].ids);
+                        mnames.push(nodelist[i].label);
+                    }
+                }
+                $("#mname").val(mnames.join(","));
+                $("#ids").val(ids.join(","));
+                console.log(layero);
+                layer.close(index);
             }
         });
     });
 
 });
 
-function loadZtree() {
-    var setting = {
+function loadZtree(_ids) {
+    let ids = _ids.split(",");
+    let setting = {
         check: {
             enable: true,
             // chkboxType: {"Y": "", "N": ""}
@@ -33,10 +47,10 @@ function loadZtree() {
         },
         data: {
             key: {
-/*                checked: "checked",
-                children: "children",
-                isParent: "isParent",
-                isHidden: "isHidden",*/
+                /*                checked: "checked",
+                                children: "children",
+                                isParent: "isParent",
+                                isHidden: "isHidden",*/
                 name: "label"/*,
                 title: "label",
                 url: "bbbbb"*/
@@ -49,28 +63,28 @@ function loadZtree() {
         },
         callback: {
             beforeClick: function (treeId, treeNode) {
-                var zTree = $.fn.zTree.getZTreeObj("ztree-demo");
-                zTree.checkNode(treeNode, !treeNode.checked, null, true);
-                return false;
-            },
-            onCheck: function (e, treeId, treeNode) {
-/*                console.log(e);
-                console.log(treeId);
-                console.log(treeNode);*/
-/*                var zTree = $.fn.zTree.getZTreeObj("ztree-demo"),
-                    nodes = zTree.getCheckedNodes(true),
-                    v = "";
-                for (var i = 0, l = nodes.length; i < l; i++) {
-                    v += nodes[i].label + ",";
+                let zTree = $.fn.zTree.getZTreeObj("ztree-demo");
+                if (treeNode.isParent) {
+                    zTree.expandNode(treeNode, null, false, true);
+                } else {
+                    zTree.checkNode(treeNode, !treeNode.checked, null, true);
                 }
-                if (v.length > 0) v = v.substring(0, v.length - 1);
-                var mname = $("#mname");
-                mname.attr("value", v);*/
+                return false;
             }
-
-
+        }, view: {
+            expandSpeed: "fast",
+            dblClickExpand: false
         }
     };
 
     $.fn.zTree.init($("#ztree-demo"), setting);
+    let zTree = $.fn.zTree.getZTreeObj("ztree-demo");
+    for (let i = 0; i <ids.length; i++) {
+        // debugger;
+        let treenode = zTree.getNodeByParam("id", ids[i]);
+        if (treenode != null) {
+            zTree.checkNode(treenode);
+        }
+    }
+
 }

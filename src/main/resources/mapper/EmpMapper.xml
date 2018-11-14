@@ -118,7 +118,7 @@
     <insert id="insertEmp" parameterType="Emp">
         insert into emp
         <trim prefix="(" suffix=")" suffixOverrides=",">
-            EMPNO,
+            <!-- EMPNO, -->
             <if test="ename != null and ename != ''">
                 ENAME,
             </if>
@@ -139,7 +139,7 @@
             </if>
         </trim>
         <trim prefix="VALUES (" suffix=")" suffixOverrides=",">
-            SQ_TEST.NEXTVAL,
+            <!-- SQ_TEST.NEXTVAL, -->
             <if test="ename != null and ename != ''">
                 #{ename, jdbcType=VARCHAR},
             </if>

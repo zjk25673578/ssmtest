@@ -19,6 +19,7 @@
                 测试输入框:
             </label>
         </div>
+        <input id="ids" type="text">
         <div class="layui-col-sm8">
             <input id="mname" class="layui-input" type="text">
         </div>
