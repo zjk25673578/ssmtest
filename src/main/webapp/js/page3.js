@@ -5,7 +5,10 @@ option = {
         text: '折线图堆叠'
     },
     tooltip: {
-        trigger: 'axis'
+        trigger: 'axis',
+        axisPointer: {
+            type: 'cross'
+        }
     },
     legend: {
         data: ['邮件营销', '联盟广告', '视频广告', '直接访问', '搜索引擎']

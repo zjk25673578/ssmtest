@@ -25,5 +25,11 @@
 <div class="myrow">
     <a href="${ctx}/charts/topage">echarts图表测试</a>
 </div>
+<div class="myrow">
+    <a href="${ctx}/emp/main">员工表测试</a>
+</div>
+<div class="myrow">
+    <a href="${ctx}/ztree/main">ztree Demo</a>
+</div>
 </body>
 </html>

@@ -6,6 +6,7 @@
     <script src="${ctx}/js/echarts.js"></script>
 </head>
 <body>
+<div id="line2" style="width: 1000px;height: 300px;border:1px red solid;"></div>
 <div id="pie" style="width: 1000px;height: 300px;border:1px red solid;"></div>
 <div id="line" style="width: 1000px;height: 300px;border:1px red solid;"></div>
 <div id="funnel" style="width: 1000px;height: 300px;border:1px red solid;"></div>
@@ -19,5 +20,7 @@
 <script src="${ctx}/js/page3.js"></script>
 <!-- 饼图 -->
 <script src="${ctx}/js/page4.js"></script>
+<!-- 简单折线图 -->
+<script src="${ctx}/js/simple_line.js"></script>
 </body>
 </html>

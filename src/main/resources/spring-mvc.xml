@@ -11,7 +11,7 @@
 
     <!-- 视图解析器 -->
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver"
-            p:prefix="/WEB-INF/" p:suffix=".jsp"/>
+          p:prefix="/WEB-INF/" p:suffix=".jsp"/>
 
     <!-- 文件上传的配置 -->
     <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"
@@ -19,7 +19,7 @@
           p:defaultEncoding="utf-8"/>
 
     <!-- 日期类型的转换器 -->
-    <bean id="myDate" class="com.hanqi.util.MyDate"></bean>
+    <bean id="myDate" class="com.hanqi.util.MyDate"/>
 
     <bean id="factoryBean"
           class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
@@ -47,6 +47,7 @@
                         <!-- 这里顺序不能反，一定先写text/html, 不然ie下会出现下载提示 -->
                         <value>text/html;charset=UTF-8</value>
                         <value>application/json;charset=UTF-8</value>
+                        <value>text/plain;charset=UTF-8</value>
                     </list>
                 </property>
             </bean>
@@ -54,8 +55,8 @@
     </mvc:annotation-driven>
 
     <!-- 静态资源过滤 -->
-    <mvc:resources location="/css/" mapping="/css/**" />
-    <mvc:resources location="/images/" mapping="/images/**" />
-    <mvc:resources location="/js/" mapping="/js/**" />
-    <mvc:resources location="/res/" mapping="/res/**" />
+    <mvc:resources location="/css/" mapping="/css/**"/>
+    <mvc:resources location="/images/" mapping="/images/**"/>
+    <mvc:resources location="/js/" mapping="/js/**"/>
+    <mvc:resources location="/lib/" mapping="/lib/**"/>
 </beans>

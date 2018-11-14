@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hanqi.dao.EmpDao">
+    <resultMap id="BaseResultMap" type="com.hanqi.model.Emp">
+        <id column="EMPNO" jdbcType="DECIMAL" property="empno"/>
+        <result column="ENAME" jdbcType="VARCHAR" property="ename"/>
+        <result column="SEX" jdbcType="DECIMAL" property="sex"/>
+        <result column="AGE" jdbcType="DECIMAL" property="age"/>
+        <result column="HIREDATE" jdbcType="DATE" property="hiredate"/>
+        <result column="SAL" jdbcType="DECIMAL" property="sal"/>
+        <result column="COMM" jdbcType="DECIMAL" property="comm"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        EMPNO, ENAME, SEX, AGE, HIREDATE, SAL, COMM
+    </sql>
+
+    <select id="selectEmpsByMysql" resultMap="BaseResultMap">
+        select <include refid="Base_Column_List"/> from emp
+        <where>
+            <if test="ename != null and ename != ''">
+                and ename like '%'||#{ename}||'%'
+            </if>
+            <if test="sex != null">
+                and sex=#{sex}
+            </if>
+            <if test="min_sal != null">
+                and sal<![CDATA[>=]]>#{min_sal}
+            </if>
+            <if test="max_sal != null">
+                and sal<![CDATA[<=]]>#{max_sal}
+            </if>
+            <if test="min_age != null">
+                and age<![CDATA[>=]]>#{min_age}
+            </if>
+            <if test="max_age != null">
+                and age<![CDATA[<=]]>#{max_age}
+            </if>
+            <if test="start_hiredate != null">
+                and trunc(hiredate)<![CDATA[>=]]>trunc(#{start_hiredate})
+            </if>
+            <if test="end_hiredate != null">
+                and trunc(hiredate)<![CDATA[<=]]>trunc(#{end_hiredate})
+            </if>
+        </where>
+        order by empno desc limit #{minpage}, #{rows}
+    </select>
+
+    <select id="selectEmpsByOracle" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM (SELECT<include refid="Base_Column_List"/>, ROWNUM rnum FROM
+        (SELECT
+        <include refid="Base_Column_List"/>
+        FROM emp
+        <where>
+            <if test="ename != null and ename != ''">
+                and ename like '%'||#{ename}||'%'
+            </if>
+            <if test="sex != null">
+                and sex=#{sex}
+            </if>
+            <if test="min_sal != null">
+                and sal<![CDATA[>=]]>#{min_sal}
+            </if>
+            <if test="max_sal != null">
+                and sal<![CDATA[<=]]>#{max_sal}
+            </if>
+            <if test="min_age != null">
+                and age<![CDATA[>=]]>#{min_age}
+            </if>
+            <if test="max_age != null">
+                and age<![CDATA[<=]]>#{max_age}
+            </if>
+            <if test="start_hiredate != null">
+                and trunc(hiredate)<![CDATA[>=]]>trunc(#{start_hiredate})
+            </if>
+            <if test="end_hiredate != null">
+                and trunc(hiredate)<![CDATA[<=]]>trunc(#{end_hiredate})
+            </if>
+        </where>
+        order by empno desc
+        )
+        WHERE ROWNUM<![CDATA[<=]]>#{maxpage}) r
+        where r.rnum<![CDATA[>]]>#{minpage}
+    </select>
+
+    <select id="selectEmpsCounts" resultType="Integer">
+        SELECT count(1)
+        FROM emp
+        <where>
+            <if test="ename != null and ename != ''">
+                and ename like '%'||#{ename}||'%'
+            </if>
+            <if test="sex != null">
+                and sex=#{sex}
+            </if>
+            <if test="min_sal != null">
+                and sal<![CDATA[>=]]>#{min_sal}
+            </if>
+            <if test="max_sal != null">
+                and sal<![CDATA[<=]]>#{max_sal}
+            </if>
+            <if test="min_age != null">
+                and age<![CDATA[>=]]>#{min_age}
+            </if>
+            <if test="max_age != null">
+                and age<![CDATA[<=]]>#{max_age}
+            </if>
+            <if test="start_hiredate != null">
+                and trunc(hiredate)<![CDATA[>=]]>trunc(#{start_hiredate})
+            </if>
+            <if test="end_hiredate != null">
+                and trunc(hiredate)<![CDATA[<=]]>trunc(#{end_hiredate})
+            </if>
+        </where>
+    </select>
+
+    <insert id="insertEmp" parameterType="Emp">
+        insert into emp
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            EMPNO,
+            <if test="ename != null and ename != ''">
+                ENAME,
+            </if>
+            <if test="sex != null">
+                SEX,
+            </if>
+            <if test="age != null">
+                AGE,
+            </if>
+            <if test="hiredate != null">
+                HIREDATE,
+            </if>
+            <if test="sal != null">
+                SAL,
+            </if>
+            <if test="comm != null">
+                COMM,
+            </if>
+        </trim>
+        <trim prefix="VALUES (" suffix=")" suffixOverrides=",">
+            SQ_TEST.NEXTVAL,
+            <if test="ename != null and ename != ''">
+                #{ename, jdbcType=VARCHAR},
+            </if>
+            <if test="sex != null">
+                #{sex, jdbcType=DECIMAL},
+            </if>
+            <if test="age != null">
+                #{age, jdbcType=DECIMAL},
+            </if>
+            <if test="hiredate != null">
+                #{hiredate, jdbcType=DATE},
+            </if>
+            <if test="sal != null">
+                #{sal, jdbcType=DECIMAL},
+            </if>
+            <if test="comm != null">
+                #{comm, jdbcType=DECIMAL},
+            </if>
+        </trim>
+    </insert>
+
+    <delete id="deleteEmp">
+        delete from emp
+        where empno = #{empno}
+    </delete>
+
+    <delete id="delMultipleEmp">
+        delete from emp where empno in
+        <foreach collection="array" close=")" index="idx" item="eno" open="(" separator=",">
+            #{eno}
+        </foreach>
+    </delete>
+
+    <update id="updateEmp" parameterType="Emp">
+        update emp
+        <set>
+            <if test="ename != null and ename != ''">
+                ENAME=#{ename, jdbcType=VARCHAR},
+            </if>
+            <if test="sex != null">
+                SEX=#{sex, jdbcType=DECIMAL},
+            </if>
+            <if test="age != null">
+                AGE=#{age, jdbcType=DECIMAL},
+            </if>
+            <if test="hiredate != null">
+                HIREDATE=#{hiredate, jdbcType=DATE},
+            </if>
+            <if test="sal != null">
+                SAL=#{sal, jdbcType=DECIMAL},
+            </if>
+            <if test="comm != null">
+                COMM=#{comm, jdbcType=DECIMAL},
+            </if>
+        </set>
+        where empno=#{empno, jdbcType=DECIMAL}
+    </update>
+</mapper>

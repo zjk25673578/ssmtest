@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hanqi.dao.SysmenuDao">
+    <resultMap id="BaseResultMap" type="com.hanqi.model.Sysmenu">
+        <id column="IDS" jdbcType="DECIMAL" property="ids"/>
+        <result column="LABEL" jdbcType="VARCHAR" property="label"/>
+        <result column="ICON" jdbcType="DECIMAL" property="icon"/>
+        <result column="URL" jdbcType="VARCHAR" property="url"/>
+        <result column="PARENTID" jdbcType="DECIMAL" property="parentid"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        IDS, LABEL, URL, PARENTID
+    </sql>
+    <select id="trees" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from sysmenu
+    </select>
+</mapper>

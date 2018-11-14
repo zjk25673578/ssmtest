@@ -1,0 +1,74 @@
+.layui-form-label {
+    padding: 5px 5px 5px 15px;
+}
+
+.layui-input {
+    height: 30px;
+    line-height: 30px;
+}
+
+.layui-col-xs3 .layui-input-inline {
+    width: 50%;
+}
+
+.layui-col-xs4 .layui-input-inline {
+    width: 70%;
+}
+
+.between-and-text {
+    display: inline-block;
+    width: 70px;
+}
+
+.between-and-date {
+    display: inline-block;
+    width: 95px;
+}
+
+.layui-form-radio {
+    margin: 1px 10px 0 0;
+}
+
+/* 修正数据表格复选框不垂直居中 */
+.layui-table-cell .layui-form-checkbox[lay-skin="primary"] {
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+
+
+
+
+/* 树形菜单样式 */
+.container {
+    width: 100%;
+}
+
+.eleTree-node-content {
+    height: 40px;
+    line-height: 29px;
+}
+
+.eleTree-node-content-icon {
+    vertical-align: middle;
+}
+
+.eleTree-node-content-icon .layui-icon {
+    font-size: 16px;
+    color: #000;
+}
+
+/* 鼠标滑过的字体颜色(包括图标) */
+.eleTree-node-content:hover {
+    color: #fff;
+}
+
+/* 鼠标滑过的背景颜色 */
+.eleTree-node-content:hover {
+    background-color: #2D93CA;
+}
+
+/* 选中状态的背景颜色 */
+.eleTree-node-content.eleTree-node-content-active {
+    background-color: red;
+}
