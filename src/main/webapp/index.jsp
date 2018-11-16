@@ -28,5 +28,8 @@
 <div class="myrow">
     <a href="${ctx}/ztree/main">ztree Demo</a>
 </div>
+<div class="myrow">
+    <a href="${ctx}/tranc/test">spring声明式事务测试</a>
+</div>
 </body>
 </html>

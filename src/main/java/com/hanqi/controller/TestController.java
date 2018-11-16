@@ -1,23 +1,21 @@
 package com.hanqi.controller;
 
-import com.hanqi.model.Emp;
-
+import com.hanqi.service.TestService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
-@RestController // ResponseBody + Controller
-@RequestMapping("/zhaojk")
+//@RestController // ResponseBody + Controller
+@Controller // ResponseBody + Controller
+@RequestMapping("/tranc")
 public class TestController {
 
-    @RequestMapping("/test1")
-    public String test1(String str) {
-        System.out.println(str);
-        return str;
-    }
+    @Autowired
+    private TestService testService;
 
-    @RequestMapping("/test2")
-    public String test2(Emp emp) {
-        System.out.println(emp);
-        return emp.toString();
+
+    @RequestMapping("/test")
+    public String test1(String str) {
+        return str;
     }
 }

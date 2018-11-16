@@ -77,7 +77,7 @@
     <!-- AOP -->
     <aop:config proxy-target-class="true">
         <aop:pointcut
-                expression="execution(* com.hanqi.service.*.*(..))" id="aoppointcut"/>
+                expression="execution(* com.hanqi.service.*.*(..))" id="aoppointcut" />
         <!-- 关联事务的传播属性 -->
         <aop:advisor pointcut-ref="aoppointcut"
                      advice-ref="txadvice"/>
