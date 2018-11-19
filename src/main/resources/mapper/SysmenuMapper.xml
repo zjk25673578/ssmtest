@@ -13,7 +13,7 @@
     </sql>
     <select id="trees" resultMap="BaseResultMap">
         select
-        IDS, LABEL, URL, PARENTID
+        IDS, LABEL, ICON, URL, PARENTID
         from sysmenu
     </select>
 </mapper>

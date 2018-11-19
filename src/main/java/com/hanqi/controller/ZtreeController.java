@@ -20,6 +20,11 @@ public class ZtreeController {
         return "page/ztree/main";
     }
 
+    @RequestMapping("/left/main")
+    public String menuMain() {
+        return "page/ztree/left/main";
+    }
+
     @ResponseBody
     @RequestMapping("/getSysmenuData")
     public String getSysmenuData() {

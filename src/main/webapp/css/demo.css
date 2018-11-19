@@ -12,3 +12,30 @@
 #menuContent {
     display: none;
 }
+
+.left-menu-container {
+    width: 300px;
+}
+
+.ztree li span.switch {
+    display: none;
+}
+
+.ztree li a {
+    vertical-align: middle;
+    line-height: 30px;
+    height: 30px;
+}
+
+.ztree li span.button {
+    display: inline;
+}
+
+.ztree li a:hover {
+    background: gray;
+    cursor: pointer;
+}
+
+.layui-icon-home {
+    background: red;
+}

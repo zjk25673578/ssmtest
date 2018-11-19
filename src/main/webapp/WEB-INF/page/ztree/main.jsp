@@ -12,7 +12,7 @@
     <script src="${ctx}/js/ztree.js"></script>
 </head>
 <body>
-<div class="container">
+<div class="container test">
     <div class="layui-container">
         <div class="layui-col-sm2">
             <label class="layui-form-label" for="mname">
