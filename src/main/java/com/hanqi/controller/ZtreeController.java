@@ -22,12 +22,18 @@ public class ZtreeController {
 
     @RequestMapping("/left/main")
     public String menuMain() {
-        return "page/ztree/left/main";
+        return "page/ztree/left/index";
     }
 
     @ResponseBody
     @RequestMapping("/getSysmenuData")
     public String getSysmenuData() {
         return JSON.toJSONString(ztreeService.trees());
+    }
+
+    @ResponseBody
+    @RequestMapping("/getSysmenuData2")
+    public String getSysmenuData2() {
+        return JSON.toJSONString(ztreeService.trees2());
     }
 }

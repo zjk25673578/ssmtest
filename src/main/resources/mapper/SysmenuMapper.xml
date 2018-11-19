@@ -16,4 +16,9 @@
         IDS, LABEL, ICON, URL, PARENTID
         from sysmenu
     </select>
+    <select id="trees2" resultType="Map">
+        select
+        IDS id, LABEL, ICON, URL, PARENTID parentId
+        from sysmenu
+    </select>
 </mapper>

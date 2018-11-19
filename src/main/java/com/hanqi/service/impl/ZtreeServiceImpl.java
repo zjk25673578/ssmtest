@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Map;
 
 @Repository
 public class ZtreeServiceImpl implements ZtreeService {
@@ -17,5 +18,10 @@ public class ZtreeServiceImpl implements ZtreeService {
     @Override
     public List<Sysmenu> trees() {
         return sysmenuDao.trees();
+    }
+
+    @Override
+    public List<Map<String, Object>> trees2() {
+        return sysmenuDao.trees2();
     }
 }
