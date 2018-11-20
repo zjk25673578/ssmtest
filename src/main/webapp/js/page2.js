@@ -8,11 +8,38 @@ option = {
         subtext: '纯属虚构',
         x: 'center' // 标题位置
     },
-    color: ['#3398DB','#DB2F1F'], // 柱子的背景色
+    color: ['#3398DB', '#DB2F1F'], // 柱子的背景色
     tooltip: {
         trigger: 'axis', // 坐标轴(axis)触发有效, item是指在柱子上触发, axis是指在轴上触发
         axisPointer: {  // 坐标轴指示器
             type: 'shadow' // 默认为直线，可选为：'line' | 'shadow'
+        }
+    },
+    toolbox: {
+        show: true,
+        feature: {
+            dataView: {
+                show: true,
+                readOnly: true
+            },
+            magicType: {
+                show: true, type: ['line', 'bar']
+            },
+            restore: {
+                show: true
+            },
+            // 注意，自定义的工具名字，只能以 my 开头，例如下例中的 myTool1，myTool2：
+            myTool: {
+                show: true,
+                title: '自定义扩展方法',
+                icon: 'image://http://echarts.baidu.com/images/favicon.png',
+                onclick: function () {
+                    alert(1);
+                }
+            },
+            saveAsImage: {
+                show: true
+            }
         }
     },
     grid: {
