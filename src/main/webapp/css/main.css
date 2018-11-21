@@ -35,10 +35,6 @@
     transform: translateY(-50%);
 }
 
-
-
-
-
 /* 树形菜单样式 */
 .container {
     width: 100%;
@@ -71,4 +67,18 @@
 /* 选中状态的背景颜色 */
 .eleTree-node-content.eleTree-node-content-active {
     background-color: red;
+}
+
+/* 日期按钮 */
+#calendarBtn {
+    display: inline-block;
+    height: 50px;
+    text-align: center;
+    line-height: 50px;
+    cursor: pointer;
+    font-size: 28px;
+}
+
+#calendarBtn:hover {
+    box-shadow: 0 0 1px red;
 }

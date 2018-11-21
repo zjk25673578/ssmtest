@@ -8,9 +8,9 @@ layui.use(["form", "layer", "laydate", "laytpl", "table", "element", "jquery"], 
         element = layui.element,
         $ = layui.$;
 
-/*    layer.msg("Hello World", {
-        offset: "50%"
-    });*/
+    /*    layer.msg("Hello World", {
+            offset: "50%"
+        });*/
 
     laydate.render({elem: "#start_hiredate"});
     laydate.render({elem: "#end_hiredate"});
@@ -191,6 +191,64 @@ layui.use(["form", "layer", "laydate", "laytpl", "table", "element", "jquery"], 
         // button必须使用 lay-submit 属性
         // 这里返回 false 才管用 !
         return false;
+    });
+
+    var isOpen = false;
+    $("#calendarBtn").on("click", function () {
+        layer.open({
+            title: false,
+            type: 2,
+            area: ["1000px", "550px"],
+            //这里content是一个URL，如果你不想让iframe出现滚动条，你还可以content: ['http://sentsin.com', 'no']
+            content: [_ctx + "/calendar/main", "no"],
+            cancel: function(index, layero) {
+                isOpen = false;
+            }
+        });
+        isOpen = true;
+    });
+
+    function getLocalTime() {
+        var date = new Date();
+        $("#calendarBtn").html((date.getHours() < 10 ? "0" + date.getHours() : date.getHours())
+            + ":"
+            + (date.getMinutes() < 10 ? "0"
+                + date.getMinutes() : date.getMinutes())
+            + ":"
+            + (date.getSeconds() < 10 ? "0"
+                + date.getSeconds() : date.getSeconds()));
+    }
+
+    getLocalTime();
+    setInterval(getLocalTime, 1000);
+
+    var keyCode;
+    var lock = false;
+    $(window).keydown(function (event) {
+        keyCode = event.keyCode;
+        if (lock) {
+            if (event.keyCode === keyCode && event.keyCode === 32) {
+                if (!isOpen) {
+                    layer.open({
+                        title: false,
+                        type: 2,
+                        area: ["1000px", "550px"],
+                        //这里content是一个URL，如果你不想让iframe出现滚动条，你还可以content: ['http://sentsin.com', 'no']
+                        content: [_ctx + "/calendar/main", "no"],
+                        cancel: function(index, layero) {
+                            isOpen = false;
+                        }
+                    });
+                    isOpen = true;
+                }
+            }
+            lock = false;
+        }
+        lock = true;
+        setTimeout(function() {
+            keyCode = -1;
+            lock = false;
+        }, 1500);
     });
 
     // 自定义两个按钮, 可以监听form的submit事件, 但是表单验证规则需要自己定义
