@@ -29,10 +29,13 @@
     <a href="${ctx}/ztree/main">ztree Demo</a>
 </div>
 <div class="myrow">
-    <a href="${ctx}/ztree/left/main">ztree 侧边栏</a>
+    <a href="${ctx}/ztree/left/main">侧边栏</a>
 </div>
 <div class="myrow">
     <a href="${ctx}/tranc/test">spring声明式事务测试</a>
+</div>
+<div class="myrow">
+    <a href="${ctx}/sms/sendMsg">短信测试</a>
 </div>
 </body>
 </html>
