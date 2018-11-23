@@ -2,27 +2,29 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8" />
-    <title>aaaaaaaa</title>
+    <meta charset="utf-8"/>
+    <title>侧边栏测试</title>
 </head>
 <link rel="stylesheet" type="text/css" href="http://www.jq22.com/jquery/font-awesome.4.6.0.css">
-<link rel="stylesheet" href="${ctx}/css/left/left.css" />
+<link rel="stylesheet" href="${ctx}/css/left/left.css"/>
 <script type="text/javascript" src="${ctx}/js/jquery-3.2.1.min.js"></script>
 <script type="text/javascript" src="${ctx}/js/index.js"></script>
 <body>
 <div class="s-side">
     <ul id="side-menu">
         <li class="s-firstItem first">
-            <a href="#">
-                <i class="fa fa-home"></i>
-                <span>首页</span>
-            </a>
+            <div class="d-firstNav s-firstNav">
+                <a href="#">
+                    <i class="fa fa-home"></i>
+                    <span>首页</span>
+                </a>
+            </div>
         </li>
         <li class="first">
-            <div class="d-firstNav s-firstNav clearfix">
+            <div class="d-firstNav s-firstNav">
                 <i class="fa fa-bars"></i>
                 <span>一级菜单</span>
-                <i class="fa fa-caret-right fr "></i>
+                <i class="fa fa-caret-right fr"></i>
             </div>
             <ul class="d-firstDrop s-firstDrop">
                 <li>

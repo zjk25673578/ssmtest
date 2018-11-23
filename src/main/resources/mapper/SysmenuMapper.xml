@@ -18,7 +18,7 @@
     </select>
     <select id="trees2" resultType="Map">
         select
-        IDS id, LABEL, ICON, URL, PARENTID parentId
+        ids id, label, icon, url, parentid
         from sysmenu
     </select>
 </mapper>
