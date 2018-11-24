@@ -30,7 +30,7 @@ function createMenu(menuData, flag) {
             '<div class="' + classNames[flag] + '">';
 
         if (menu.children) {
-            // li += arrow; // 如果有子菜单, 就拼一个下箭头
+            // li += arrow; // 如果有子菜单, 就拼一个下箭头1
             li += '<i class="' + menu.icon + '"></i>' +
                 '<span>' + menu.text + '</span>' + arrow + '</div>';
             let temp = createMenu(menu.children, flag + 1);
