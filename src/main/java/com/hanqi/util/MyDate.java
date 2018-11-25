@@ -39,7 +39,7 @@ public class MyDate implements Converter<String, Date> {
     }
 
     /**
-     * 返回指定月份的第一天是周几
+     * 返回当前年份的指定月份的第一天是周几
      *
      * @param month
      * @return
@@ -75,7 +75,7 @@ public class MyDate implements Converter<String, Date> {
     }
 
     /**
-     * 返回当前月是几号
+     * 返回当前月的日期
      *
      * @return
      */

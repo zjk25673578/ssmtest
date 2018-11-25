@@ -63,7 +63,7 @@ public class MyUtil extends StringUtils {
     }
 
     /**
-     * 构建response消息模型
+     * 构建response消息模型(包含layui弹出层type)
      *
      * @param result
      * @return
