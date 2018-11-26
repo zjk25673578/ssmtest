@@ -89,8 +89,12 @@ ul {
     margin-left: 10px
 }
 
+.s-side .d-secondNav span {
+    margin-left: 10px
+}
+
 .s-side .d-firstNav i.fr {
-    font-size: 25px
+    font-size: 24px
 }
 
 .s-side .s-secondNav, .s-side .s-secondItem {

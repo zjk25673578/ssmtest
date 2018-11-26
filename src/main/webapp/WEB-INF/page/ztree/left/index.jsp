@@ -7,6 +7,7 @@
 </head>
 <link rel="stylesheet" type="text/css" href="http://www.jq22.com/jquery/font-awesome.4.6.0.css">
 <link rel="stylesheet" href="${ctx}/css/left/left.css"/>
+<link rel="stylesheet" href="${ctx}/css/left/custom.css"/>
 <script type="text/javascript" src="${ctx}/js/jquery-3.2.1.min.js"></script>
 <script type="text/javascript" src="${ctx}/js/index.js"></script>
 <body>

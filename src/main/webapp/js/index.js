@@ -1,40 +1,47 @@
 $(function () {
 
+    let $sideMenu = $('#side-menu');
     $.post(_ctx + "/ztree/getSysmenuData2", function (data) {
         var menuData = convert(data);
         let h = createMenu(menuData, 0);
-        console.log(h);
-        $("#side-menu").html(h);
+        $sideMenu.html(h);
     }, "json");
 
-    $('#side-menu').on('click', '.d-firstNav', function (e) {
+    $sideMenu.on('click', '.d-firstNav', function (e) {
         dropSwift($(this), '.d-firstDrop');
         e.stopPropagation();
     });
 
-    $('#side-menu').on('click', '.d-secondNav', function (e) {
+    $sideMenu.on('click', '.d-secondNav', function (e) {
         dropSwift($(this), '.d-secondDrop');
         e.stopPropagation();
     });
 });
 
+let idxs = ["first", "", "", "", "", "", ""];
 let classNames = ["d-firstNav s-firstNav", "d-secondNav s-secondNav", "s-thirdItem", "", "", "", "", "", ""];
 let classNamesDrop = ["d-firstDrop s-firstDrop", "d-secondDrop s-secondDrop", "", "", "", "", "", ""];
 
-function createMenu(menuData, flag) {
-    let html = flag === 0 ? '' : '<ul class="' + classNamesDrop[flag] + '">';
+/**
+ * 将json对象转换成html元素
+ * @param menuData 菜单数据源
+ * @param flag 当前层级, 第一级为0
+ * @param tempIdx 当前的索引, 用来记录子菜单的层级
+ * @returns {string}
+ */
+function createMenu(menuData, flag, tempIdx) {
+    let tempIndex = flag;
+    let html = flag === 0 ? '' : '<ul class="' + classNamesDrop[tempIdx] + '">';
+    let arrow = '<i class="fa fa-caret-right fr"></i>';
     for (let i = 0; i < menuData.length; i++) {
         let menu = menuData[i];
-        let arrow = '<i class="fa fa-caret-right fr"></i>';
-        let li = '<li class="first">' +
-            '<div class="' + classNames[flag] + '">';
+        let li = '<li class="' + idxs[flag] + '"><div class="' + classNames[flag] + '">';
 
         if (menu.children) {
             // li += arrow; // 如果有子菜单, 就拼一个下箭头1
             li += '<i class="' + menu.icon + '"></i>' +
                 '<span>' + menu.text + '</span>' + arrow + '</div>';
-            let temp = createMenu(menu.children, flag + 1);
-            li += temp;
+            li += createMenu(menu.children, flag + 1, tempIndex);
             li += '</li>';
         } else {
             if (menu.url) {
