@@ -17,6 +17,9 @@
     <a href="javascript:;">poi导出excel(随机抽取一名用户的本月考勤信息)</a>
 </div>
 <div class="myrow">
+    <a href="editor/main">poi导出富文本编辑器内容到word</a>
+</div>
+<div class="myrow">
     <a href="javascript:;">freemarker导出word</a>
 </div>
 <div class="myrow">
