@@ -40,5 +40,8 @@
 <div class="myrow">
     <a href="${ctx}/sms/sendMsg">短信测试</a>
 </div>
+<div class="myrow">
+    <a href="${ctx}/ckplayer/main">layui视频播放</a>
+</div>
 </body>
 </html>
