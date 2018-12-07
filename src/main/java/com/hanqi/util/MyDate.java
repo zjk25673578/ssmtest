@@ -1,31 +1,16 @@
 package com.hanqi.util;
 
-import org.springframework.core.convert.converter.Converter;
-
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
 
 /**
  * 自定义的日期参数转换器
  *
  * @author Administrator
  */
-public class MyDate implements Converter<String, Date> {
+public class MyDate {
 
     private static SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd");
-
-    @Override
-    public Date convert(String arg0) {
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        try {
-            return sdf.parse(arg0);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
 
     /**
      * 返回当前月份的1号是周几
@@ -55,16 +40,6 @@ public class MyDate implements Converter<String, Date> {
     }
 
     /**
-     * 返回当前月份
-     *
-     * @return
-     */
-    public static int getCurrMonth() {
-        Calendar calendar = Calendar.getInstance();
-        return calendar.get(Calendar.MONTH) + 1;
-    }
-
-    /**
      * 返回当前的年份
      *
      * @return
@@ -72,6 +47,16 @@ public class MyDate implements Converter<String, Date> {
     public static int getCurrYear() {
         Calendar calendar = Calendar.getInstance();
         return calendar.get(Calendar.YEAR);
+    }
+
+    /**
+     * 返回当前月份
+     *
+     * @return
+     */
+    public static int getCurrMonth() {
+        Calendar calendar = Calendar.getInstance();
+        return calendar.get(Calendar.MONTH) + 1;
     }
 
     /**
@@ -85,7 +70,37 @@ public class MyDate implements Converter<String, Date> {
     }
 
     /**
-     * 获取当前的时间标识
+     * 返回当前时
+     *
+     * @return
+     */
+    public static int getCurrHour() {
+        Calendar calendar = Calendar.getInstance();
+        return calendar.get(Calendar.HOUR_OF_DAY);
+    }
+
+    /**
+     * 返回当前分
+     *
+     * @return
+     */
+    public static int getCurrMinute() {
+        Calendar calendar = Calendar.getInstance();
+        return calendar.get(Calendar.MINUTE);
+    }
+
+    /**
+     * 返回当前秒
+     *
+     * @return
+     */
+    public static int getCurrSecond() {
+        Calendar calendar = Calendar.getInstance();
+        return calendar.get(Calendar.SECOND);
+    }
+
+    /**
+     * 获取当前的日期标识
      *
      * @return
      */
@@ -94,7 +109,17 @@ public class MyDate implements Converter<String, Date> {
     }
 
     /**
-     * 获取指定的时间标识
+     * 获取当前的时间标识
+     *
+     * @return
+     */
+    public static String getTimeStr() {
+        return MyUtil.concat(getCurrHour(), ":", getCurrMinute(), ":", getCurrSecond());
+    }
+
+    /**
+     * 获取指定的日期标识
+     *
      * @return
      */
     public static String getDateStr(int year, int month, int day) {

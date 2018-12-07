@@ -14,7 +14,7 @@ public class MyDateFormatUtil implements Converter<String, Date> {
 
 	@Override
 	public Date convert(String arg0) {
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		try {
 			return sdf.parse(arg0);
 		} catch (ParseException e) {

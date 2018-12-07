@@ -1,13 +1,10 @@
 package com.hanqi.util.quartz;
 
+import com.hanqi.util.MyDate;
 import org.quartz.*;
-import org.quartz.impl.StdScheduler;
 import org.quartz.impl.StdSchedulerFactory;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class TestDemo {
-    private static Scheduler scheduler;
 
     public static void main(String[] args) {
 
@@ -15,10 +12,12 @@ public class TestDemo {
         // ApplicationContext ac = new ClassPathXmlApplicationContext("classpath:spring-quartz.xml");
 
         // 存入数据库
-        ApplicationContext ac = new ClassPathXmlApplicationContext("classpath:spring-quartz-jdbc.xml");
+/*        ApplicationContext ac = new ClassPathXmlApplicationContext("classpath:spring-quartz-jdbc.xml");
         scheduler = (StdScheduler) ac.getBean("scheduler");
 
-        startSchedule();
+        startSchedule();*/
+
+        System.out.println(MyDate.getTimeStr());
     }
 
     public static void startSchedule() {
@@ -31,11 +30,11 @@ public class TestDemo {
                     .build();
 
             // 触发器类型
-            //SimpleScheduleBuilder builder = SimpleScheduleBuilder
+            SimpleScheduleBuilder builder = SimpleScheduleBuilder
             // 设置执行次数
-            //.repeatSecondlyForTotalCount(5);
+            .repeatSecondlyForTotalCount(5);
 
-            CronScheduleBuilder builder = CronScheduleBuilder.cronSchedule("0/2 * * * * ?");
+            //CronScheduleBuilder builder = CronScheduleBuilder.cronSchedule("0/2 * * * * ?");
             // 2、创建Trigger
             Trigger trigger = TriggerBuilder.newTrigger()
                     .withIdentity("trigger1_1", "tGroup1").startNow()
@@ -43,7 +42,7 @@ public class TestDemo {
                     .build();
 
             // 3、创建Scheduler
-            scheduler = StdSchedulerFactory.getDefaultScheduler();
+            Scheduler scheduler = StdSchedulerFactory.getDefaultScheduler();
             scheduler.start();
             // 4、调度执行
             scheduler.scheduleJob(jobDetail, trigger);

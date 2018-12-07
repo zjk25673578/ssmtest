@@ -19,7 +19,7 @@
           p:defaultEncoding="utf-8"/>
 
     <!-- 日期类型的转换器 -->
-    <bean id="myDate" class="com.hanqi.util.MyDate"/>
+    <bean id="myDate" class="com.hanqi.util.MyDateFormatUtil"/>
 
     <bean id="factoryBean"
           class="org.springframework.format.support.FormattingConversionServiceFactoryBean">

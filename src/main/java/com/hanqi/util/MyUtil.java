@@ -23,16 +23,15 @@ public class MyUtil extends StringUtils {
      * @return
      */
     public static String concat(Object... objs) {
-        Object[] objects = objs;
-        if (objects == null || objects.length == 0) {
+        if (objs == null || objs.length == 0) {
             return "";
         }
-        String temp = "";
-        for (Object o : objects) {
+        StringBuilder temp = new StringBuilder();
+        for (Object o : objs) {
             if (o != null)
-                temp += o;
+                temp.append(o);
         }
-        return temp;
+        return temp.toString();
     }
 
     /**
@@ -77,6 +76,18 @@ public class MyUtil extends StringUtils {
         }
         return msg;
     }
+
+    /**
+     *
+     * @param result
+     * @return
+     */
+    public static Message msg(int result, String msgInfo) {
+        Message msg = msg(result);
+        msg.setAction(msgInfo);
+        return msg;
+    }
+
 
     /**
      * 用于将多个javabean转换成Map<String, Object><br>
