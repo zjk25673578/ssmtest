@@ -43,5 +43,8 @@
 <div class="myrow">
     <a href="${ctx}/ckplayer/main">layui视频播放</a>
 </div>
+<div class="myrow">
+    <a href="${ctx}/bootstrap/layout/main">bootstrap弹窗布局</a>
+</div>
 </body>
 </html>
