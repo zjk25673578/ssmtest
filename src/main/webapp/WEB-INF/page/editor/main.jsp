@@ -10,7 +10,9 @@
 <body>
 <div class="layui-container">
     <div class="layui-row">
-        <div id="demo"></div>
+        <div class="layui-form-item">
+            <div id="demo">123</div>
+        </div>
         <div class="layui-btn-group">
             <button id="getContent" class="layui-btn layui-btn-normal">获取内容</button>
         </div>
