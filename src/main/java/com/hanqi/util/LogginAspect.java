@@ -1,5 +1,7 @@
 package com.hanqi.util;
 
+import com.hanqi.model.Appuser;
+import org.apache.log4j.Logger;
 import org.aspectj.lang.JoinPoint;
 import org.springframework.stereotype.Component;
 
@@ -10,7 +12,7 @@ import java.util.Arrays;
 @Component
 public class LogginAspect {
 
-    // private Logger logger = Logger.getLogger(Appuser.class);
+    private Logger logger = Logger.getLogger(Appuser.class);
 
     public void before(JoinPoint joinPoint) {
         String methodName = joinPoint.getSignature().getName();
