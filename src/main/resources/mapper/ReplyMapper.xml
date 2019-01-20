@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hanqi.dao.ReplyMapper">
+    <resultMap id="BaseResultMap" type="com.hanqi.model.Reply">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="art_id" property="artId" jdbcType="INTEGER"/>
+        <result column="reply_id" property="replyId" jdbcType="INTEGER"/>
+        <result column="user_id" property="userId" jdbcType="INTEGER"/>
+        <result column="content" property="content" jdbcType="VARCHAR"/>
+        <result column="reply_time" property="replyTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    id, art_id, reply_id, user_id, content, reply_time
+  </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from reply
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from reply
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+    <insert id="insert" parameterType="com.hanqi.model.Reply">
+    insert into reply (art_id, reply_id,
+      user_id, content, reply_time
+      )
+    values (#{id,jdbcType=INTEGER}, #{artId,jdbcType=INTEGER}, #{replyId,jdbcType=INTEGER}, 
+      #{userId,jdbcType=INTEGER}, #{content,jdbcType=VARCHAR}, #{replyTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+    <insert id="insertSelective" parameterType="com.hanqi.model.Reply" keyColumn="id" keyProperty="id" useGeneratedKeys="true">
+        insert into reply
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="artId != null">
+                art_id,
+            </if>
+            <if test="replyId != null">
+                reply_id,
+            </if>
+            <if test="userId != null">
+                user_id,
+            </if>
+            <if test="content != null">
+                content,
+            </if>
+            <if test="replyTime != null">
+                reply_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="artId != null">
+                #{artId,jdbcType=INTEGER},
+            </if>
+            <if test="replyId != null">
+                #{replyId,jdbcType=INTEGER},
+            </if>
+            <if test="userId != null">
+                #{userId,jdbcType=INTEGER},
+            </if>
+            <if test="content != null">
+                #{content,jdbcType=VARCHAR},
+            </if>
+            <if test="replyTime != null">
+                #{replyTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.hanqi.model.Reply">
+        update reply
+        <set>
+            <if test="artId != null">
+                art_id = #{artId,jdbcType=INTEGER},
+            </if>
+            <if test="replyId != null">
+                reply_id = #{replyId,jdbcType=INTEGER},
+            </if>
+            <if test="userId != null">
+                user_id = #{userId,jdbcType=INTEGER},
+            </if>
+            <if test="content != null">
+                content = #{content,jdbcType=VARCHAR},
+            </if>
+            <if test="replyTime != null">
+                reply_time = #{replyTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.hanqi.model.Reply">
+    update reply
+    set art_id = #{artId,jdbcType=INTEGER},
+      reply_id = #{replyId,jdbcType=INTEGER},
+      user_id = #{userId,jdbcType=INTEGER},
+      content = #{content,jdbcType=VARCHAR},
+      reply_time = #{replyTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+    <select id="getReplys" resultType="Map">
+        SELECT r.id, r.art_id,
+        (SELECT a1.realname FROM appuser a1 WHERE a1.ids=(select r1.user_id from reply r1 where r1.id=r.reply_id)) realname,
+        (SELECT a2.realname FROM appuser a2 WHERE a2.ids=r.user_id) username,
+        r.content, date_format(r.reply_time,'%Y-%m-%d %H:%i:%s') replyTime FROM reply r where r.art_id=#{artId}
+    </select>
+    <select id="getDetail" resultType="Map" parameterType="Integer">
+        SELECT r.id, r.art_id,
+        (SELECT a1.realname FROM appuser a1 WHERE a1.ids=(select r1.user_id from reply r1 where r1.id=r.reply_id)) realname,
+        (SELECT a2.realname FROM appuser a2 WHERE a2.ids=r.user_id) username,
+        r.content, date_format(r.reply_time,'%Y-%m-%d %H:%i:%s') replyTime FROM reply r where id=#{id}
+    </select>
+</mapper>

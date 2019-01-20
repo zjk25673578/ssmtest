@@ -54,7 +54,16 @@
                 targetProject="${target.project}" type="XMLMAPPER"/>
 
         <!-- 声明需要哪个表 -->
-        <table schema="${tab.schema}" tableName="${tab.name}"
+        <table schema="${tab.schema}" tableName="reply"
+               enableCountByExample="false" enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false"
+               selectByExampleQueryId="false">
+            <property name="useActualColumnNames" value="false"/>
+
+            <!--<generatedKey column="ids" sqlStatement="JDBC"
+                          identity="true"/>-->
+        </table>
+        <table schema="${tab.schema}" tableName="article"
                enableCountByExample="false" enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false"
                selectByExampleQueryId="false">

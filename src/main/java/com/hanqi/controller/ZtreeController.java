@@ -14,12 +14,6 @@ public class ZtreeController {
     @Autowired
     private ZtreeService ztreeService;
 
-
-    @RequestMapping("/main")
-    public String main() {
-        return "page/ztree/main";
-    }
-
     @RequestMapping("/left/main")
     public String menuMain() {
         return "page/ztree/left/index";

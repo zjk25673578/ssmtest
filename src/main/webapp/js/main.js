@@ -89,6 +89,8 @@ layui.use(["form", "layer", "laydate", "laytpl", "table", "element", "jquery"], 
 
         // 修改数据
         update: function (obj) {
+            let date = new Date(obj.data.hiredate);
+            obj.data.hiredate = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate();
             saveOrUpdate(parseData(obj.data), "修改员工信息");
         },
 
@@ -248,7 +250,7 @@ layui.use(["form", "layer", "laydate", "laytpl", "table", "element", "jquery"], 
         setTimeout(function() {
             keyCode = -1;
             lock = false;
-        }, 1500);
+        }, 300);
     });
 
     // 自定义两个按钮, 可以监听form的submit事件, 但是表单验证规则需要自己定义
@@ -294,7 +296,7 @@ layui.use(["form", "layer", "laydate", "laytpl", "table", "element", "jquery"], 
      */
     function parseData(updateData) {
         for (let p in data) {
-            if (updateData[p] == undefined) {
+            if (updateData[p] === undefined) {
                 updateData[p] = "";
             }
         }
@@ -328,6 +330,7 @@ layui.use(["form", "layer", "laydate", "laytpl", "table", "element", "jquery"], 
     function saveOrUpdate(data, title) {
         let tpl = document.getElementById("form_emp").innerHTML;
         laytpl(tpl).render(data, function (html) {
+            console.log(data);
             openDialog(html, title, ["320px", "390px"], ["#hiredate"], function (idx) {
                 let formdata = $("#form_data_emp").serializeArray();
                 let result = validateForm(formdata); // 表单验证

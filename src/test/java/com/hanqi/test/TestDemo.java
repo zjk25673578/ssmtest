@@ -11,16 +11,16 @@ import java.util.Date;
 
 public class TestDemo {
 
-    public static void main(String[] args) {
+    public static void main123(String[] args) {
         System.out.println(new File("lib").getAbsolutePath());
     }
 
-    public static void main333(String[] args) {
+    public static void main(String[] args) {
         System.out.println(new Date().getTime());
         System.out.println(new SimpleDateFormat("yyyyMMdd").format(new Date(1544256060000L)));
         System.out.println(new SimpleDateFormat("yyyyMMdd").format(new Date(1545840000000L)));
         System.out.println(new SimpleDateFormat("yyyyMMdd").format(new Date(1544256060000L)));
-        System.out.println(new SimpleDateFormat("yyyyMMdd").format(new Date(1545840000000L)));
+        System.out.println(new SimpleDateFormat("yyyyMMdd").format(new Date(1541865600000L)));
     }
 
     public static void main222222(String[] args) {

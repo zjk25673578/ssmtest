@@ -113,6 +113,7 @@
     </div>
 
 </div>
+
 <script type="text/html" id="opera_btns">
     <!-- 右侧的菜单 -->
     <a href="javascript:;" lay-event="update" lay-data="{{ d.empno }}"
@@ -120,6 +121,7 @@
     <a href="javascript:;" lay-event="del" lay-data="{{ d.empno }}"
        class="layui-btn layui-btn-xs layui-btn-danger">删除</a>
 </script>
+
 <script type="text/html" id="toolbarDemo">
     <!-- 顶部功能菜单 -->
     <div class="layui-btn-container">
@@ -127,6 +129,7 @@
         <button class="layui-btn layui-btn-sm" lay-event="del_multiple">删除</button>
     </div>
 </script>
+
 <script type="text/html" id="form_emp">
     <div class="layui-form-item"></div>
     <form id="form_data_emp" lay-filter="form_add_emp" class="layui-form">

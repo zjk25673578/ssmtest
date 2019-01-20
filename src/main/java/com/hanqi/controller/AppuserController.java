@@ -1,5 +1,6 @@
 package com.hanqi.controller;
 
+import com.alibaba.fastjson.JSONObject;
 import com.hanqi.model.Appuser;
 import com.hanqi.service.AppuserService;
 import com.hanqi.util.MyDate;
@@ -9,7 +10,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
@@ -79,5 +82,19 @@ public class AppuserController {
         }
         model.addAttribute("message", "<font color='red'>刪除失败</font>");
         return "/page/users/userinfo";
+    }
+
+    @ResponseBody
+    @RequestMapping("/setSession")
+    public String setSession(Integer ids, HttpSession session) {
+        Appuser appuser = appuserService.selectUserByIds(ids);
+        JSONObject jo = new JSONObject();
+        session.removeAttribute("currentUser");
+        if (appuser != null) {
+            session.setAttribute("currentUser", appuser);
+            jo.put("success", true);
+            jo.put("realname", appuser.getRealname());
+        }
+        return jo.toString();
     }
 }

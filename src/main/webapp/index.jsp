@@ -17,19 +17,10 @@
     <a href="javascript:;">poi导出excel(随机抽取一名用户的本月考勤信息)</a>
 </div>
 <div class="myrow">
-    <a href="editor/main">poi导出富文本编辑器内容到word</a>
-</div>
-<div class="myrow">
-    <a href="javascript:;">freemarker导出word</a>
-</div>
-<div class="myrow">
     <a href="${ctx}/charts/topage">echarts图表测试</a>
 </div>
 <div class="myrow">
     <a href="${ctx}/emp/main">员工表测试</a>
-</div>
-<div class="myrow">
-    <a href="${ctx}/ztree/main">ztree Demo</a>
 </div>
 <div class="myrow">
     <a href="${ctx}/ztree/left/main">侧边栏</a>
@@ -44,10 +35,10 @@
     <a href="${ctx}/ckplayer/main">layui视频播放</a>
 </div>
 <div class="myrow">
-    <a href="${ctx}/bootstrap/layout/main">bootstrap弹窗布局</a>
+    <a href="${ctx}/quartz0/main">quartz测试</a>
 </div>
 <div class="myrow">
-    <a href="${ctx}/quartz0/main">quartz测试</a>
+    <a href="${ctx}/forum/list">论坛回复测试</a>
 </div>
 </body>
 </html>
