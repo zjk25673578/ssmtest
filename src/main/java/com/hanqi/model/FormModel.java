@@ -13,6 +13,7 @@ public class FormModel {
     /**
      * @DateTimeFormat 前台到后台
      * @JsonFormat 后台到前台
+     * 网上看到的资料是这么说的, 但是经试验JsonFormat这个注解也可以对前台传入后台的值进行格式化
      */
     // @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     // @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
