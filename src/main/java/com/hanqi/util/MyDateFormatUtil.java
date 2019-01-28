@@ -24,10 +24,14 @@ public class MyDateFormatUtil implements Converter<String, Date> {
 
     @Override
     public Date convert(String arg0) {
+        System.out.println("日期转换器开始运行=======================" + arg0);
+        int index = 1;
         for (SimpleDateFormat sdf : sdfs) {
+            System.out.println("进行第" + index++ + "次转换");
             try {
                 return sdf.parse(arg0);
             } catch (ParseException e) {
+                System.out.println("格式: " + sdf.toPattern() + "算逑...抛出异常 !");
                 // e.printStackTrace();
             }
         }

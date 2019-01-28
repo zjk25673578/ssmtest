@@ -40,5 +40,8 @@
 <div class="myrow">
     <a href="${ctx}/forum/list">论坛回复测试</a>
 </div>
+<div class="myrow">
+    <a href="${ctx}/datetime/test">日期类型参数接收测试</a>
+</div>
 </body>
 </html>

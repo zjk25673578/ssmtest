@@ -33,6 +33,7 @@
 
     <!-- springMVC的注解驱动标签 -->
     <mvc:annotation-driven conversion-service="factoryBean">
+    <!--<mvc:annotation-driven>-->
         <mvc:message-converters register-defaults="false">
             <!-- 配置Spring的转换器 -->
             <bean class="org.springframework.http.converter.StringHttpMessageConverter"/>

@@ -6,16 +6,28 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.Reader;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class TestDemo {
 
+    public static void main(String[] args) {
+        String time = "2018-22-15 16:44:12";
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        sdf.setLenient(false);
+        try {
+            System.out.println(sdf.parse(time));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+    }
+
     public static void main123(String[] args) {
         System.out.println(new File("lib").getAbsolutePath());
     }
 
-    public static void main(String[] args) {
+    public static void main1(String[] args) {
         System.out.println(new Date().getTime());
         System.out.println(new SimpleDateFormat("yyyyMMdd").format(new Date(1544256060000L)));
         System.out.println(new SimpleDateFormat("yyyyMMdd").format(new Date(1545840000000L)));
