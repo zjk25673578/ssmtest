@@ -3,6 +3,7 @@ package com.hanqi.controller;
 import com.hanqi.model.FormModel;
 import com.hanqi.model.Message;
 import com.hanqi.util.MyUtil;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -20,7 +21,7 @@ public class GlobalController {
      *
      * @param binder
      */
-    /*@InitBinder
+/*    @InitBinder
     public void initBinder(WebDataBinder binder) {
         System.out.println("BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB");
         binder.registerCustomEditor(String.class, new StringTrimmerEditor(true));
@@ -81,7 +82,7 @@ public class GlobalController {
      * @return
      */
     @RequestMapping("/datetime/formDate")
-    public String formDate(Date dateParam, Model model) {
+    public String formDate(@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") Date dateParam, Model model) {
         setModel(dateParam, model);
         return "page/datetime/success";
     }
@@ -95,7 +96,7 @@ public class GlobalController {
      */
     @ResponseBody
     @RequestMapping("/datetime/formDateAjax")
-    public Message formDateAjax(Date dateParam, Model model) {
+    public Message formDateAjax(@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") Date dateParam, Model model) {
         setModel(dateParam, model);
         if (dateParam != null) {
             return MyUtil.msg(1, "接收成功 !");
@@ -119,6 +120,7 @@ public class GlobalController {
      * 配置日期转换器, 实体类中所有的Date类型的参数都会经过日期转换器转换一下
      * 页面跳转可以让List和Array都能接收到所有的参数
      * 同样, 如果啥都没有, 也是抛出 400 异常
+     * 除了配置转换器和@InitBinder的方法, 也可以在实体类上Date类型的属性上加 @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
      *
      * @param formModel
      * @param model
@@ -166,20 +168,6 @@ public class GlobalController {
         }
         return MyUtil.msg(-1, "接收失败 !");
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     private void setModel(FormModel formModel, Model model) {

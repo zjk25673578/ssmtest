@@ -10,8 +10,16 @@ public class FormModel {
 
     private String password;
 
+    /**
+     * @DateTimeFormat 前台到后台
+     * @JsonFormat 后台到前台
+     */
+    // @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    // @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private Date birthday;
 
+    // @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    // @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private Date createTime;
 
     private Integer city;
