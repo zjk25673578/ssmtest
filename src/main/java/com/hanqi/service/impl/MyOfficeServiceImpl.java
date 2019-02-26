@@ -31,7 +31,6 @@ public class MyOfficeServiceImpl implements MyOfficeService {
         titleParagraphRun.setColor("000000");
         titleParagraphRun.setFontSize(20);
 
-
         //段落
         XWPFParagraph firstParagraph = document.createParagraph();
         XWPFRun run = firstParagraph.createRun();
@@ -44,24 +43,20 @@ public class MyOfficeServiceImpl implements MyOfficeService {
         cTShd.setVal(STShd.CLEAR);
         cTShd.setFill("97FFFF");
 
-
         //换行
         XWPFParagraph paragraph1 = document.createParagraph();
         XWPFRun paragraphRun1 = paragraph1.createRun();
         paragraphRun1.setText("\r");
-
 
         //基本信息表格
         XWPFTable infoTable = document.createTable();
         //去表格边框
         infoTable.getCTTbl().getTblPr().unsetTblBorders();
 
-
         //列宽自动分割
         CTTblWidth infoTableWidth = infoTable.getCTTbl().addNewTblPr().addNewTblW();
         infoTableWidth.setType(STTblWidth.DXA);
         infoTableWidth.setW(BigInteger.valueOf(9072));
-
 
         //表格第一行
         XWPFTableRow infoTableRowOne = infoTable.getRow(0);
@@ -88,16 +83,13 @@ public class MyOfficeServiceImpl implements MyOfficeService {
         infoTableRowFive.getCell(0).setText("现居地");
         infoTableRowFive.getCell(1).setText(": xx");
 
-
         //两个表格之间加个换行
         XWPFParagraph paragraph = document.createParagraph();
         XWPFRun paragraphRun = paragraph.createRun();
         paragraphRun.setText("\r");
 
-
         //工作经历表格
         XWPFTable ComTable = document.createTable();
-
 
         //列宽自动分割
         CTTblWidth comTableWidth = ComTable.getCTTbl().addNewTblPr().addNewTblW();
@@ -124,7 +116,6 @@ public class MyOfficeServiceImpl implements MyOfficeService {
         comTableRowThree.getCell(1).setText("至今");
         comTableRowThree.getCell(2).setText("seawater");
         comTableRowThree.getCell(3).setText("Java开发工程师");
-
 
         CTSectPr sectPr = document.getDocument().getBody().addNewSectPr();
         XWPFHeaderFooterPolicy policy = new XWPFHeaderFooterPolicy(document, sectPr);

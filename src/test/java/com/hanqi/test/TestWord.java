@@ -15,7 +15,7 @@ public class TestWord {
         Configuration configuration = new Configuration(Configuration.VERSION_2_3_22);
         try {
             configuration.setDefaultEncoding("utf-8");
-            configuration.setDirectoryForTemplateLoading(new File("E:\\IdeaProjects\\ssmtest\\src\\main\\resources\\templet"));
+            configuration.setDirectoryForTemplateLoading(new File("D:\\ideaspace\\ssmtest\\src\\main\\resources\\templet"));
             Template template = configuration.getTemplate("word2003.xml");
             Map<String, Object> map = new HashMap<>();
             map.put("otitle", "aaaaaaaaa");
@@ -35,7 +35,7 @@ public class TestWord {
 
     //获得图片的base64码
     public static String getImageBase() {
-        File file = new File("E:\\IdeaProjects\\ssmtest\\src\\main\\webapp\\images\\1.jpg");
+        File file = new File("C:\\Users\\Administrator\\Desktop\\测试文件\\6.jpg");
         if (!file.exists()) {
             return "";
         }
@@ -43,10 +43,6 @@ public class TestWord {
         byte[] data = null;
         try {
             in = new FileInputStream(file);
-        } catch (FileNotFoundException e1) {
-            e1.printStackTrace();
-        }
-        try {
             data = new byte[in.available()];
             in.read(data);
             in.close();

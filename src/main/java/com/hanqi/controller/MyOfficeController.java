@@ -1,6 +1,7 @@
 package com.hanqi.controller;
 
 import com.hanqi.service.MyOfficeService;
+import com.hanqi.util.EditorUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -8,6 +9,9 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 @Controller
 @RequestMapping("/office")
@@ -17,7 +21,42 @@ public class MyOfficeController {
     private MyOfficeService myOfficeService;
 
     /**
-     * 随机抽取一名用户在当月的考勤信息导出成word
+     * 查看导出富文本样例页面
+     *
+     * @return
+     */
+    @RequestMapping("/main")
+    public String main() {
+        return "page/export/main";
+    }
+
+    /**
+     * 查看导出富文本样例页面
+     *
+     * @return
+     */
+    @RequestMapping("/test")
+    public String viewTest() {
+        return "page/export/test";
+    }
+
+    /**
+     * 查看导出富文本样例页面
+     *
+     * @return
+     */
+    @RequestMapping("/exportRichText")
+    public void exportRichText(HttpServletRequest request, HttpServletResponse response) {
+        EditorUtil e = new EditorUtil();
+        try {
+            e.exportWord(request, response, "title", "");
+        } catch (Exception e1) {
+            e1.printStackTrace();
+        }
+    }
+
+    /**
+     * POI导出docx
      *
      * @return
      */
@@ -35,9 +74,6 @@ public class MyOfficeController {
 
         headers.setContentType(MediaType.APPLICATION_OCTET_STREAM);
         headers.setContentDispositionFormData("attachment", fileName);
-        ResponseEntity<byte[]> r = new ResponseEntity<>(wordArray,
-                headers, HttpStatus.CREATED);
-        return r;
+        return new ResponseEntity<>(wordArray, headers, HttpStatus.CREATED);
     }
-
 }
